@@ -40,4 +40,4 @@ tempfile = "3.1"
 webbrowser = "0.5"
 
 [workspace]
-members = ["examples/test-installed/", "examples/test-svc-acct/", "examples/test-device/", "examples/service_account", "examples/drive_example"]
+members = ["examples/test-installed/", "examples/test-svc-acct/", "examples/test-device/", "examples/service_account", "examples/drive_example", "examples/test-adc"]

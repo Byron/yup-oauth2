@@ -1,0 +1,9 @@
+[package]
+name = "test-adc"
+version = "0.1.0"
+authors = ["Antti Peltonen <antti.peltonen@iki.fi>"]
+edition = "2018"
+
+[dependencies]
+yup-oauth2 = { path = "../../" }
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }

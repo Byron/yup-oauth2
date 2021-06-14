@@ -69,6 +69,7 @@
 //! ```
 //!
 #![deny(missing_docs)]
+mod application_default_credentials;
 pub mod authenticator;
 pub mod authenticator_delegate;
 mod device;
@@ -86,7 +87,8 @@ mod types;
 
 #[doc(inline)]
 pub use crate::authenticator::{
-    DeviceFlowAuthenticator, InstalledFlowAuthenticator, ServiceAccountAuthenticator,
+    ApplicationDefaultCredentialsAuthenticator, DeviceFlowAuthenticator,
+    InstalledFlowAuthenticator, ServiceAccountAuthenticator,
 };
 
 pub use crate::helper::*;
