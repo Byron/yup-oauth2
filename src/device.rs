@@ -186,7 +186,7 @@ impl DeviceFlow {
             .extend_pairs(&[
                 ("client_id", application_secret.client_id.as_str()),
                 ("client_secret", application_secret.client_secret.as_str()),
-                ("code", device_code),
+                ("device_code", device_code),
                 ("grant_type", grant_type),
             ])
             .finish();

@@ -220,7 +220,7 @@ impl InstalledFlow {
 
         let body = form_urlencoded::Serializer::new(String::new())
             .extend_pairs(vec![
-                ("code", authcode),
+                ("device_code", authcode),
                 ("client_id", app_secret.client_id.as_str()),
                 ("client_secret", app_secret.client_secret.as_str()),
                 ("redirect_uri", redirect_uri.as_ref()),
@@ -352,7 +352,7 @@ mod installed_flow_server {
         // The provider redirects to the specified localhost URL, appending the authorization
         // code, like this: http://localhost:8080/xyz/?code=4/731fJ3BheyCouCniPufAd280GHNV5Ju35yYcGs
         form_urlencoded::parse(url.query().unwrap_or("").as_bytes()).find_map(|(param, val)| {
-            if param == "code" {
+            if param == "device_code" {
                 Some(val.into_owned())
             } else {
                 None

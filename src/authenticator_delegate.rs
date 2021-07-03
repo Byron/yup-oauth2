@@ -86,6 +86,17 @@ pub trait DeviceFlowDelegate: Send + Sync {
     ) -> Pin<Box<dyn Future<Output = ()> + Send + 'a>> {
         Box::pin(present_user_code(device_auth_resp))
     }
+
+    // The name of the device code
+    // fn device_code_name(&self) -> &str {
+    //     "code"
+    // }
+
+    // The URL for the Grant Type Check
+    // fn grant_type_for_check(&self) -> &str {
+    //     //"http://oauth.net/grant_type/device/1.0"
+    //     crate::device::GOOGLE_GRANT_TYPE
+    // }
 }
 
 async fn present_user_code(device_auth_resp: &DeviceAuthResponse) {
@@ -95,7 +106,7 @@ async fn present_user_code(device_auth_resp: &DeviceAuthResponse) {
     );
     println!("Do not close this application until you either denied or granted access.");
     println!(
-        "You have time until {}.",
+        "You have time until : {}.",
         device_auth_resp.expires_at.with_timezone(&Local)
     );
 }
