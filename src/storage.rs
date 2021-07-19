@@ -449,7 +449,8 @@ mod tests {
     #[tokio::test]
     async fn test_disk_storage() {
         let new_token = |access_token: &str| TokenInfo {
-            access_token: access_token.to_owned(),
+            id_token: None,
+            access_token: Some(access_token.to_owned()),
             refresh_token: None,
             expires_at: None,
         };

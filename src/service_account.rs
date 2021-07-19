@@ -218,7 +218,7 @@ mod tests {
     const TEST_PRIVATE_KEY_PATH: &'static str = "examples/Sanguine-69411a0c0eea.json";
 
     // Uncomment this test to verify that we can successfully obtain tokens.
-    //#[tokio::test]
+    // #[tokio::test]
     #[allow(dead_code)]
     async fn test_service_account_e2e() {
         let key = read_service_account_key(TEST_PRIVATE_KEY_PATH)
@@ -231,6 +231,14 @@ mod tests {
             "{:?}",
             acc.token(&client, &["https://www.googleapis.com/auth/pubsub"])
                 .await
+        );
+        println!(
+            "{:?}",
+            acc.token(
+                &client,
+                &["https://some.scope/likely-to-hand-out-id-tokens"]
+            )
+            .await
         );
     }
 

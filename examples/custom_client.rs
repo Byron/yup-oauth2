@@ -16,7 +16,7 @@ where
     let request = http::Request::get("https://example.com")
         .header(
             http::header::AUTHORIZATION,
-            format!("Bearer {}", token.as_str()),
+            format!("Bearer {}", token.access_token().ok_or("no access token")?),
         )
         .body(hyper::body::Body::empty())?;
     let response = client.request(request).await?;

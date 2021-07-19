@@ -6,7 +6,7 @@ use crate::installed::{InstalledFlow, InstalledFlowReturnMethod};
 use crate::refresh::RefreshFlow;
 use crate::service_account::{ServiceAccountFlow, ServiceAccountFlowOpts, ServiceAccountKey};
 use crate::storage::{self, Storage, TokenStorage};
-use crate::types::{AccessToken, ApplicationSecret, TokenInfo};
+use crate::types::{ApplicationSecret, Token, TokenInfo};
 use private::AuthFlow;
 
 use futures::lock::Mutex;
@@ -53,7 +53,7 @@ where
     C: hyper::client::connect::Connect + Clone + Send + Sync + 'static,
 {
     /// Return the current token for the provided scopes.
-    pub async fn token<'a, T>(&'a self, scopes: &'a [T]) -> Result<AccessToken, Error>
+    pub async fn token<'a, T>(&'a self, scopes: &'a [T]) -> Result<Token, Error>
     where
         T: AsRef<str>,
     {
@@ -62,10 +62,7 @@ where
 
     /// Return a token for the provided scopes, but don't reuse cached tokens. Instead,
     /// always fetch a new token from the OAuth server.
-    pub async fn force_refreshed_token<'a, T>(
-        &'a self,
-        scopes: &'a [T],
-    ) -> Result<AccessToken, Error>
+    pub async fn force_refreshed_token<'a, T>(&'a self, scopes: &'a [T]) -> Result<Token, Error>
     where
         T: AsRef<str>,
     {
@@ -77,7 +74,7 @@ where
         &'a self,
         scopes: &'a [T],
         force_refresh: bool,
-    ) -> Result<AccessToken, Error>
+    ) -> Result<Token, Error>
     where
         T: AsRef<str>,
     {
